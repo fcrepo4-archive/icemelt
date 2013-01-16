@@ -53,7 +53,7 @@ describe "Fog Integration Spec", :acceptance => true do
 
     job.wait_for {ready?}
 
-    json = JSON.parse(job.get_output.body)
+    json = job.get_output.body
     json['ArchiveList'].select { |x| x['ArchiveId'] == archive.id }.first['Size'].should == 2*1024*1024
 
     body.rewind
@@ -77,7 +77,7 @@ describe "Fog Integration Spec", :acceptance => true do
 
     job.wait_for {ready?}
 
-    json = JSON.parse(job.get_output.body)
+    json = job.get_output.body
 
     json['ArchiveList'].should have_at_least(1).archive
   end
