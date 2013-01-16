@@ -227,6 +227,9 @@ module Icemelt
     get '/:account_id/vaults/:vault_name/jobs/:job_id' do
       common_response_headers
 
+
+      job = vault(params[:vault_name]).job params[:job_id]
+      
       if job.expired? or job.new?
         headers \
           "Content-Type" => 'application/json'
@@ -244,7 +247,6 @@ module Icemelt
       headers \
         "Content-Type" => 'application/json'
 
-      job = vault(params[:vault_name]).job params[:job_id]
 
       job.aws_attributes.to_json
     end
