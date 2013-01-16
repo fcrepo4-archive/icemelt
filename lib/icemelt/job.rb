@@ -45,7 +45,7 @@ module Icemelt
     end
 
     def new?
-      options.fetch(:_saved, false)
+      !options.fetch(:_saved, false)
     end
 
     def action
